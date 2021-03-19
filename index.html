@@ -1,0 +1,1050 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="vi">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>For Dat</title>
+	<meta name="description" content="Hiệu ứng trình diễn ảnh 3D đẹp mắt chỉ với HTML5 và CSS3" />
+	<meta property="og:description" content="Hiệu ứng trình diễn ảnh 3D đẹp mắt chỉ với HTML5 và CSS3" />
+	<meta property="og:image" content="https://redirect.nhq.vn/demo/screenshot.png" />
+	<link rel="stylesheet" href="css/style.css?v=1.0" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="slide.css">
+	<link rel="stylesheet" type="text/css" href="auto-run.css">
+	<link rel="stylesheet prefetch" href="css/font-awesome.min.css?v=4.3.0" />
+	<script type="text/javascript" charset="utf-8">
+
+	function hasClassName(inElement, inClassName)
+	{
+		var regExp = new RegExp('(?:^|\\s+)' + inClassName + '(?:\\s+|$)');
+		return regExp.test(inElement.className);
+	}
+
+	function addClassName(inElement, inClassName)
+	{
+		if (!hasClassName(inElement, inClassName))
+			inElement.className = [inElement.className, inClassName].join(' ');
+	}
+
+	function removeClassName(inElement, inClassName)
+	{
+		if (hasClassName(inElement, inClassName)) {
+			var regExp = new RegExp('(?:^|\\s+)' + inClassName + '(?:\\s+|$)', 'g');
+			var curClasses = inElement.className;
+			inElement.className = curClasses.replace(regExp, ' ');
+		}
+	}
+
+	function toggleClassName(inElement, inClassName)
+	{
+		if (hasClassName(inElement, inClassName))
+			removeClassName(inElement, inClassName);
+		else
+			addClassName(inElement, inClassName);
+	}
+
+	function toggleShape()
+	{
+		var shape = document.getElementById('shape');
+		if (hasClassName(shape, 'cube') || hasClassName(shape, 'autoLoad')) {
+			if (hasClassName(shape, 'cube')) {
+				removeClassName(shape, 'cube');
+			}
+			if (hasClassName(shape, 'autoLoad')) {
+				removeClassName(shape, 'autoLoad');
+			}
+			addClassName(shape, 'ring');
+		} else {
+			removeClassName(shape, 'ring');
+			addClassName(shape, 'cube');
+		}
+
+		var stage = document.getElementById('stage');
+		if (hasClassName(shape, 'ring'))
+			stage.style.webkitTransform = 'translateZ(-200px)';
+		else
+			stage.style.webkitTransform = '';
+	}
+	
+	function downloadLink()
+    {
+		location.href = 'https://www.facebook.com/profile.php?id=100005038575561';
+    }
+	
+	var count = 0;
+	var num_bg = 1;
+	var next_bg = 0;
+	var preLoadbg;
+	
+	function timedCount()
+	{
+		if(count >= 5) {
+			count = 0;
+			autoLoad();
+		} else {
+			count = count + 1;
+		}
+		if(next_bg >= 10) {
+			num_bg = num_bg + 1;
+			if(num_bg > 35) {
+				num_bg = 1;
+			}
+			document.body.style.backgroundImage = "url(css/bg/" + num_bg + ".jpg)";
+			preLoadbg = new Image();
+			if(num_bg == 35) {
+				preLoadbg.src = "css/bg/1.jpg";
+			} else {
+				preLoadbg.src = "css/bg/" + (num_bg + 1) + ".jpg";
+			}
+			next_bg = 0;
+		} else {
+			next_bg = next_bg + 1;
+		}
+		setTimeout(timedCount, 1000);
+	}
+
+	function autoLoad()
+	{
+		var shapeTest = document.getElementById('shape');
+		if (hasClassName(shapeTest, 'cube')) {
+			removeClassName(shapeTest, 'cube');
+			addClassName(shapeTest, 'autoLoad');
+		} else {
+			toggleShape();
+		}
+	}
+	</script>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/snow.js?v=1.0"></script>
+	<script type="text/javascript" src="js/ruoi.js?v=1.0"></script>
+	<script type="text/javascript" src="js/player.js?v=1.1"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</head>
+<!--
+<body>
+
+    <dl>
+
+        <dt></dt>
+        <div class="content-carrousel">
+            <dd><img src="./img0/1.jpg" /></dd>
+            <dd><img src="./img0/2.jpg" /></dd>
+            <dd><img src="./img0/3.jpg" /></dd>
+            <dd><img src="./img0/4.jpg" /></dd>
+            <dd><img src="./img0/5.jpg" /></dd>
+            <dd><img src="./img0/6.jpg" /></dd>
+            <dd><img src="./img0/7.jpg" /></dd>
+            <dd><img src="./img0/8.jpg" /></dd>
+            <dd><img src="./img0/9.jpg" /></dd>
+            <dd><img src="./img0/10.jpg" /></dd>
+
+            <p style="font-size: 70px; ">Hani</p>
+			<div id="ground"></div>
+
+        </div>
+    </dl>
+    -->
+
+
+<body onload="timedCount()">
+	
+	<!--vòng 1-->
+	<div id="container">
+
+		<div id="stage">
+			<div id="shape" class="cube backfaces">
+				<div class="plane one1"></div>
+				<div class="plane two1"></div>
+				<div class="plane three1"></div>
+				<div class="plane four1"></div>
+				<div class="plane five1"></div>
+				<div class="plane six1"></div>
+				<div class="plane seven1"></div>
+				<div class="plane eight1"></div>
+				<div class="plane nine1"></div>
+				<div class="plane ten1"></div>
+				<div class="plane eleven1"></div>
+				<div class="plane twelve1"></div>
+
+				<p style="font-size: 50px ">LOVE</p>
+				<div id="ground"></div>
+			</div>
+		</div>
+	
+
+	<marquee id="marq" scrollamount="8" direction="left" loop="INFINITE" scrolldelay="0" onmouseover="this.stop()" onmouseout="this.start()">
+			<img src="./img1/1.jpg"> 
+			<img src="./img1/2.jpg"> 
+			<img src="./img1/3.jpg"> 
+			<img src="./img1/4.jpg"> 
+			<img src="./img1/5.jpg"> 
+			<img src="./img1/6.jpg"> 
+			<img src="./img1/7.jpg"> 
+			<img src="./img1/8.jpg"> 
+			<img src="./img1/9.jpg">
+			<img src="./img1/10.jpg"> 
+			<img src="./img1/11.jpg"> 
+			<img src="./img1/12.jpg">
+			<img src="./img1/13.jpg"> 
+			<img src="./img1/14.jpg"> 
+			<img src="./img1/15.jpg"> 
+			<img src="./img1/16.jpg"> 
+			<img src="./img1/17.jpg"> 
+			<img src="./img1/18.jpg"> 
+			<img src="./img1/19.jpg"> 
+			<img src="./img1/20.jpg">
+			<img src="./img1/21.jpg">
+			<img src="./img1/22.jpg">
+			<img src="./img1/23.jpg">
+			<img src="./img1/24.jpg">
+			<img src="./img1/25.jpg">
+			<img src="./img1/26.jpg">
+			<img src="./img1/27.jpg">
+			<img src="./img1/28.jpg">
+			<img src="./img1/29.jpg">
+			<img src="./img1/30.jpg"> 
+			<img src="./img1/31.jpg"> 
+			<img src="./img1/32.jpg"> 
+			<img src="./img1/33.jpg"> 
+			<img src="./img1/34.jpg"> 
+			<img src="./img1/35.jpg"> 
+			<img src="./img1/36.jpg"> 
+			<img src="./img1/37.jpg"> 
+			<img src="./img1/38.jpg"> 
+			<img src="./img1/39.jpg"> 
+			<img src="./img1/40.jpg">
+			<img src="./img1/41.jpg">
+			<img src="./img1/42.jpg">
+			<img src="./img1/43.jpg">
+		
+			<!-- <img src="./img1/44.jpg">
+			<img src="./img1/45.jpg">
+			<img src="./img1/46.jpg">
+			<img src="./img1/47.jpg">
+			<img src="./img1/48.jpg">
+			<img src="./img1/49.jpg">
+			<img src="./img1/50.jpg">
+			<img src="./img1/51.jpg">
+			<img src="./img1/52.jpg">
+			<img src="./img1/53.jpg">
+			<img src="./img1/54.jpg">
+			<img src="./img1/55.jpg">
+			<img src="./img1/56.jpg">
+			<img src="./img1/57.jpg">
+			<img src="./img1/58.jpg">
+			<img src="./img1/59.jpg">
+			<img src="./img1/60.jpg"> 
+			<img src="./img1/61.jpg"> 
+			<img src="./img1/62.jpg"> 
+			<img src="./img1/63.jpg"> 
+			<img src="./img1/64.jpg"> 
+			<img src="./img1/65.jpg"> 
+			<img src="./img1/66.jpg"> 
+			<img src="./img1/67.jpg"> 
+			<img src="./img1/68.jpg"> 
+			<img src="./img1/69.jpg"> 
+			<img src="./img1/70.jpg">
+			<img src="./img1/71.jpg">
+			<img src="./img1/72.jpg">
+			<img src="./img1/73.jpg">
+			<img src="./img1/74.jpg">
+			<img src="./img1/75.jpg">
+			<img src="./img1/76.jpg">
+			<img src="./img1/77.jpg">
+			<img src="./img1/78.jpg">
+			<img src="./img1/79.jpg">
+			<img src="./img1/80.jpg">
+			<img src="./img1/81.jpg">
+			<img src="./img1/82.jpg">
+			<img src="./img1/83.jpg">
+			<img src="./img1/84.jpg">
+			<img src="./img1/85.jpg">
+			<img src="./img1/86.jpg">
+			<img src="./img1/87.jpg">
+			<img src="./img1/88.jpg">
+			<img src="./img1/89.jpg">
+			<img src="./img1/90.jpg">
+			<img src="./img1/91.jpg">
+			<img src="./img1/92.jpg">
+			<img src="./img1/93.jpg">
+			<img src="./img1/94.jpg">
+			<img src="./img1/95.jpg">
+			<img src="./img1/96.jpg">
+			<img src="./img1/97.jpg">
+			<img src="./img1/98.jpg">
+			<img src="./img1/99.jpg">
+			<img src="./img1/100.jpg"> 
+			<img src="./img1/101.jpg"> 
+			<img src="./img1/102.jpg">
+			<img src="./img1/103.jpg"> 
+			<img src="./img1/104.jpg"> 
+			<img src="./img1/105.jpg"> 
+			<img src="./img1/106.jpg"> 
+			<img src="./img1/107.jpg"> 
+			<img src="./img1/108.jpg"> 
+			<img src="./img1/109.jpg">
+			<img src="./img1/110.jpg"> 
+			<img src="./img1/111.jpg"> 
+			<img src="./img1/112.jpg">
+			<img src="./img1/113.jpg"> 
+			<img src="./img1/114.jpg"> 
+			<img src="./img1/115.jpg"> 
+			<img src="./img1/116.jpg"> 
+			<img src="./img1/117.jpg"> 
+			<img src="./img1/118.jpg"> 
+			<img src="./img1/119.jpg"> 
+			<img src="./img1/120.jpg">
+			<img src="./img1/121.jpg">
+			<img src="./img1/122.jpg">
+			<img src="./img1/123.jpg">
+			<img src="./img1/124.jpg">
+			<img src="./img1/125.jpg">
+			<img src="./img1/126.jpg">
+			<img src="./img1/127.jpg">
+			<img src="./img1/128.jpg">
+			<img src="./img1/129.jpg">
+			<img src="./img1/130.jpg"> 
+			<img src="./img1/131.jpg"> 
+			<img src="./img1/132.jpg"> 
+			<img src="./img1/133.jpg"> 
+			<img src="./img1/134.jpg"> 
+			<img src="./img1/135.jpg"> 
+			<img src="./img1/136.jpg"> 
+			<img src="./img1/137.jpg"> 
+			<img src="./img1/138.jpg"> 
+			<img src="./img1/139.jpg"> 
+			<img src="./img1/140.jpg">
+			<img src="./img1/141.jpg">
+			<img src="./img1/142.jpg">
+			<img src="./img1/143.jpg">
+			<img src="./img1/144.jpg">
+			<img src="./img1/145.jpg">
+			<img src="./img1/146.jpg">
+			<img src="./img1/147.jpg">
+			<img src="./img1/148.jpg">
+			<img src="./img1/149.jpg">
+			<img src="./img1/150.jpg">
+			<img src="./img1/151.jpg">
+			<img src="./img1/152.jpg">
+			<img src="./img1/153.jpg">
+			<img src="./img1/154.jpg">
+			<img src="./img1/155.jpg">
+			<img src="./img1/156.jpg">
+			<img src="./img1/157.jpg">
+			<img src="./img1/158.jpg">
+			<img src="./img1/159.jpg">
+			<img src="./img1/160.jpg"> 
+			<img src="./img1/161.jpg"> 
+			<img src="./img1/162.jpg"> 
+			<img src="./img1/163.jpg"> 
+			<img src="./img1/164.jpg"> 
+			<img src="./img1/165.jpg"> 
+			<img src="./img1/166.jpg"> 
+			<img src="./img1/167.jpg"> 
+			<img src="./img1/168.jpg"> 
+			<img src="./img1/169.jpg"> 
+			<img src="./img1/170.jpg">
+			<img src="./img1/171.jpg">
+			<img src="./img1/172.jpg">
+			<img src="./img1/173.jpg">
+			<img src="./img1/174.jpg">
+			<img src="./img1/175.jpg">
+			<img src="./img1/176.jpg">
+			<img src="./img1/177.jpg">
+			<img src="./img1/178.jpg">
+			<img src="./img1/179.jpg">
+			<img src="./img1/180.jpg">
+			<img src="./img1/181.jpg">
+			<img src="./img1/182.jpg">
+			<img src="./img1/183.jpg">
+			<img src="./img1/184.jpg">
+			<img src="./img1/185.jpg">
+			<img src="./img1/186.jpg">
+			<img src="./img1/187.jpg">
+			<img src="./img1/188.jpg">
+			<img src="./img1/189.jpg">
+			<img src="./img1/190.jpg">
+			<img src="./img1/191.jpg">
+			<img src="./img1/192.jpg">
+			<img src="./img1/193.jpg">
+			<img src="./img1/194.jpg">
+			<img src="./img1/195.jpg">
+			<img src="./img1/196.jpg">
+			<img src="./img1/197.jpg">
+			<img src="./img1/198.jpg">
+			<img src="./img1/199.jpg">
+			<img src="./img1/200.jpg"> 
+			<img src="./img1/201.jpg"> 
+			<img src="./img1/202.jpg"> 
+			<img src="./img1/204.jpg"> 
+			<img src="./img1/204.jpg"> 
+			<img src="./img1/205.jpg"> 
+			<img src="./img1/206.jpg"> 
+			<img src="./img1/207.jpg"> 
+			<img src="./img1/208.jpg"> 
+			<img src="./img1/209.jpg">
+			<img src="./img1/210.jpg"> 
+			<img src="./img1/211.jpg"> 
+			<img src="./img1/212.jpg">
+			<img src="./img1/213.jpg"> 
+			<img src="./img1/214.jpg"> 
+			<img src="./img1/215.jpg"> 
+			<img src="./img1/216.jpg"> 
+			<img src="./img1/217.jpg"> 
+			<img src="./img1/218.jpg"> 
+			<img src="./img1/219.jpg"> 
+			<img src="./img1/220.jpg">
+			<img src="./img1/221.jpg">
+			<img src="./img1/222.jpg">
+			<img src="./img1/223.jpg">
+			<img src="./img1/224.jpg">
+			<img src="./img1/225.jpg">
+			<img src="./img1/226.jpg">
+			<img src="./img1/227.jpg">
+			<img src="./img1/228.jpg">
+			<img src="./img1/229.jpg">
+			<img src="./img1/230.jpg"> 
+			<img src="./img1/231.jpg"> 
+			<img src="./img1/232.jpg"> 
+			<img src="./img1/233.jpg"> 
+			<img src="./img1/234.jpg"> 
+			<img src="./img1/235.jpg"> 
+			<img src="./img1/236.jpg"> 
+			<img src="./img1/237.jpg"> 
+			<img src="./img1/238.jpg"> 
+			<img src="./img1/239.jpg"> 
+			<img src="./img1/240.jpg">
+			<img src="./img1/241.jpg">
+			<img src="./img1/242.jpg">
+			<img src="./img1/243.jpg">
+			<img src="./img1/244.jpg">
+			<img src="./img1/245.jpg">
+			<img src="./img1/246.jpg">
+			<img src="./img1/247.jpg">
+			<img src="./img1/248.jpg">
+			<img src="./img1/249.jpg">
+			<img src="./img1/250.jpg">
+			<img src="./img1/251.jpg">
+			<img src="./img1/252.jpg">
+			<img src="./img1/253.jpg">
+			<img src="./img1/254.jpg">
+			<img src="./img1/255.jpg">
+			<img src="./img1/256.jpg">
+			<img src="./img1/257.jpg">
+			<img src="./img1/258.jpg">
+			<img src="./img1/259.jpg">
+			<img src="./img1/260.jpg"> 
+			<img src="./img1/261.jpg"> 
+			<img src="./img1/262.jpg"> 
+			<img src="./img1/263.jpg"> 
+			<img src="./img1/264.jpg"> 
+			<img src="./img1/265.jpg"> 
+			<img src="./img1/266.jpg"> 
+			<img src="./img1/267.jpg"> 
+			<img src="./img1/268.jpg"> 
+			<img src="./img1/269.jpg"> 
+			<img src="./img1/270.jpg">
+			<img src="./img1/271.jpg">
+			<img src="./img1/272.jpg">
+			<img src="./img1/273.jpg">
+			<img src="./img1/274.jpg">
+			<img src="./img1/275.jpg">
+			<img src="./img1/276.jpg">
+			<img src="./img1/277.jpg">
+			<img src="./img1/278.jpg">
+			<img src="./img1/279.jpg">
+			<img src="./img1/280.jpg">
+			<img src="./img1/281.jpg">
+			<img src="./img1/282.jpg">
+			<img src="./img1/283.jpg">
+			<img src="./img1/284.jpg">
+			<img src="./img1/285.jpg">
+			<img src="./img1/286.jpg">
+			<img src="./img1/287.jpg">
+			<img src="./img1/288.jpg">
+			<img src="./img1/289.jpg">
+			<img src="./img1/290.jpg">
+			<img src="./img1/291.jpg">
+			<img src="./img1/292.jpg">
+			<img src="./img1/293.jpg">
+			<img src="./img1/294.jpg">
+			<img src="./img1/295.jpg">
+			<img src="./img1/296.jpg">
+			<img src="./img1/297.jpg">
+			<img src="./img1/298.jpg">
+			<img src="./img1/299.jpg">
+			<img src="./img1/300.jpg"> -->
+			<!--
+			<img src="./img1/301.jpg"> 
+			<img src="./img1/302.jpg"> 
+			<img src="./img1/303.jpg"> 
+			<img src="./img1/304.jpg"> 
+			<img src="./img1/305.jpg"> 
+			<img src="./img1/306.jpg"> 
+			<img src="./img1/307.jpg"> 
+			<img src="./img1/308.jpg"> 
+			<img src="./img1/309.jpg">
+			<img src="./img1/310.jpg"> 
+			<img src="./img1/311.jpg"> 
+			<img src="./img1/312.jpg">
+			<img src="./img1/313.jpg"> 
+			<img src="./img1/314.jpg"> 
+			<img src="./img1/315.jpg"> 
+			<img src="./img1/316.jpg"> 
+			<img src="./img1/317.jpg"> 
+			<img src="./img1/318.jpg"> 
+			<img src="./img1/319.jpg"> 
+			<img src="./img1/320.jpg">
+			<img src="./img1/321.jpg">
+			<img src="./img1/322.jpg">
+			<img src="./img1/323.jpg">
+			<img src="./img1/324.jpg">
+			<img src="./img1/325.jpg">
+			<img src="./img1/326.jpg">
+			<img src="./img1/327.jpg">
+			<img src="./img1/328.jpg">
+			<img src="./img1/329.jpg">
+			<img src="./img1/330.jpg"> 
+			<img src="./img1/331.jpg"> 
+			<img src="./img1/332.jpg"> 
+			<img src="./img1/333.jpg"> 
+			<img src="./img1/334.jpg"> 
+			<img src="./img1/335.jpg"> 
+			<img src="./img1/336.jpg"> 
+			<img src="./img1/337.jpg"> 
+			<img src="./img1/338.jpg"> 
+			<img src="./img1/339.jpg"> 
+			<img src="./img1/340.jpg">
+			<img src="./img1/341.jpg">
+			<img src="./img1/342.jpg">
+			<img src="./img1/343.jpg">
+			<img src="./img1/344.jpg">
+			<img src="./img1/345.jpg">
+			<img src="./img1/346.jpg">
+			<img src="./img1/347.jpg">
+			<img src="./img1/348.jpg">
+			<img src="./img1/349.jpg">
+			<img src="./img1/350.jpg">
+			<img src="./img1/351.jpg">
+			<img src="./img1/352.jpg">
+			<img src="./img1/353.jpg">
+			<img src="./img1/354.jpg">
+			<img src="./img1/355.jpg">
+			<img src="./img1/356.jpg">
+			<img src="./img1/357.jpg">
+			<img src="./img1/358.jpg">
+			<img src="./img1/359.jpg">
+			<img src="./img1/360.jpg"> 
+			<img src="./img1/361.jpg"> 
+			<img src="./img1/362.jpg"> 
+			<img src="./img1/363.jpg"> 
+			<img src="./img1/364.jpg"> 
+			<img src="./img1/365.jpg"> 
+			<img src="./img1/366.jpg"> 
+			<img src="./img1/367.jpg"> 
+			<img src="./img1/368.jpg"> 
+			<img src="./img1/369.jpg"> 
+			<img src="./img1/370.jpg">
+			<img src="./img1/371.jpg">
+			<img src="./img1/372.jpg">
+			<img src="./img1/373.jpg">
+			<img src="./img1/374.jpg">
+			<img src="./img1/375.jpg">
+			<img src="./img1/376.jpg">
+			<img src="./img1/377.jpg">
+			<img src="./img1/378.jpg">
+			<img src="./img1/379.jpg">
+			<img src="./img1/380.jpg">
+			<img src="./img1/381.jpg">
+			<img src="./img1/382.jpg">
+			<img src="./img1/383.jpg">
+			<img src="./img1/384.jpg">
+			<img src="./img1/385.jpg">
+			<img src="./img1/386.jpg">
+			<img src="./img1/387.jpg">
+			<img src="./img1/388.jpg">
+			<img src="./img1/389.jpg">
+			<img src="./img1/390.jpg">
+			<img src="./img1/391.jpg">
+			<img src="./img1/392.jpg">
+			<img src="./img1/393.jpg">
+			<img src="./img1/394.jpg">
+			<img src="./img1/395.jpg">
+			<img src="./img1/396.jpg">
+			<img src="./img1/397.jpg">
+			<img src="./img1/398.jpg">
+			<img src="./img1/399.jpg">
+			<img src="./img1/400.jpg">
+			<img src="./img1/401.jpg"> 
+			<img src="./img1/402.jpg"> 
+			<img src="./img1/403.jpg"> 
+			<img src="./img1/404.jpg"> 
+			<img src="./img1/405.jpg"> 
+			<img src="./img1/406.jpg"> 
+			<img src="./img1/407.jpg"> 
+			<img src="./img1/408.jpg"> 
+			<img src="./img1/409.jpg">
+			<img src="./img1/410.jpg"> 
+			<img src="./img1/411.jpg"> 
+			<img src="./img1/412.jpg">
+			<img src="./img1/413.jpg"> 
+			<img src="./img1/414.jpg"> 
+			<img src="./img1/415.jpg"> 
+			<img src="./img1/416.jpg"> 
+			<img src="./img1/417.jpg"> 
+			<img src="./img1/418.jpg"> 
+			<img src="./img1/419.jpg"> 
+			<img src="./img1/420.jpg">
+			<img src="./img1/421.jpg">
+			<img src="./img1/422.jpg">
+			<img src="./img1/423.jpg">
+			<img src="./img1/424.jpg">
+			<img src="./img1/425.jpg">
+			<img src="./img1/426.jpg">
+			<img src="./img1/427.jpg">
+			<img src="./img1/428.jpg">
+			<img src="./img1/429.jpg">
+			<img src="./img1/430.jpg"> 
+			<img src="./img1/431.jpg"> 
+			<img src="./img1/432.jpg"> 
+			<img src="./img1/433.jpg"> 
+			<img src="./img1/434.jpg"> 
+			<img src="./img1/435.jpg"> 
+			<img src="./img1/436.jpg"> 
+			<img src="./img1/437.jpg"> 
+			<img src="./img1/438.jpg"> 
+			<img src="./img1/439.jpg"> 
+			<img src="./img1/440.jpg">
+			<img src="./img1/441.jpg">
+			<img src="./img1/442.jpg">
+			<img src="./img1/443.jpg">
+			<img src="./img1/444.jpg">
+			<img src="./img1/445.jpg">
+			<img src="./img1/446.jpg">
+			<img src="./img1/447.jpg">
+			<img src="./img1/448.jpg">
+			<img src="./img1/449.jpg">
+			<img src="./img1/450.jpg">
+			<img src="./img1/451.jpg">
+			<img src="./img1/452.jpg">
+			<img src="./img1/453.jpg">
+			<img src="./img1/454.jpg">
+			<img src="./img1/455.jpg">
+			<img src="./img1/456.jpg">
+			<img src="./img1/457.jpg">
+			<img src="./img1/458.jpg">
+			<img src="./img1/459.jpg">
+			<img src="./img1/460.jpg"> 
+			<img src="./img1/461.jpg"> 
+			<img src="./img1/462.jpg"> 
+			<img src="./img1/463.jpg"> 
+			<img src="./img1/464.jpg"> 
+			<img src="./img1/465.jpg"> 
+			<img src="./img1/466.jpg"> 
+			<img src="./img1/467.jpg"> 
+			<img src="./img1/468.jpg"> 
+			<img src="./img1/469.jpg"> 
+			<img src="./img1/470.jpg">
+			<img src="./img1/471.jpg">
+			<img src="./img1/472.jpg">
+			<img src="./img1/473.jpg">
+			<img src="./img1/474.jpg">
+			<img src="./img1/475.jpg">
+			<img src="./img1/476.jpg">
+			<img src="./img1/477.jpg">
+			<img src="./img1/478.jpg">
+			<img src="./img1/479.jpg">
+			<img src="./img1/480.jpg">
+			<img src="./img1/481.jpg">
+			<img src="./img1/482.jpg">
+			<img src="./img1/483.jpg">
+			<img src="./img1/484.jpg">
+			<img src="./img1/485.jpg">
+			<img src="./img1/486.jpg">
+			<img src="./img1/487.jpg">
+			<img src="./img1/488.jpg">
+			<img src="./img1/489.jpg">
+			<img src="./img1/490.jpg">
+			<img src="./img1/491.jpg">
+			<img src="./img1/492.jpg">
+			<img src="./img1/493.jpg">
+			<img src="./img1/494.jpg">
+			<img src="./img1/495.jpg">
+			<img src="./img1/496.jpg">
+			<img src="./img1/497.jpg">
+			<img src="./img1/498.jpg">
+			<img src="./img1/499.jpg">
+		-->
+	
+	</marquee>
+
+	<marquee  behavior="alternate" scrollamount="10">
+	<p  style="font-size: 20px ; padding-top :10px;  color:#01DFD7;font-style: italic; " >😁Người đang đọc dòng này rất là cute đó😁
+	</p>
+	</marquee>
+		
+
+
+<!----------------------------------------------------------NHẠC------------------------------------------------------->
+		<div class="mhn-player">
+			<div class="album-art"></div>
+			<div class="play-list">
+
+				<!-----------Âu Mỹ------------>
+				<a href="#" class="play"
+					data-id="1"
+					data-album=""
+					data-artist="Becky G"
+					data-title="Shower"
+					data-albumart="audio/covers/shower.jpg"
+					data-url="audio/Becky G-Shower.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="2"
+					data-album=""
+					data-artist="Skylar Grey"
+					data-title="Love The Way You Lie"
+					data-albumart="audio/covers/love-the-way.jpg"
+					data-url="audio/Love The Way You Lie - Skylar Grey.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="3"
+					data-album=""
+					data-artist="Shayne Ward"
+					data-title="Until You"
+					data-albumart="audio/covers/until-you.jpg"
+					data-url="audio/Until_You.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="4"
+					data-album=""
+					data-artist="Adele"
+					data-title="Send my love to your new lover"
+					data-albumart="audio/covers/send-my-love.jpg"
+					data-url="audio/Send my love to your new lover.mp3">
+				</a>
+
+				
+				<a href="#" class="play"
+					data-id="5"
+					data-album=""
+					data-artist="One Direction"
+					data-title="What Makes You Beautiful"
+					data-albumart="audio/covers/what-makes-you-beautiful.jpg"
+					data-url="audio/What_Makes_You_Beautiful.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="6"
+					data-album=""
+					data-artist="AViVA"
+					data-title="GRRRLS"
+					data-albumart="audio/covers/grrrls.jpg"
+					data-url="audio/AViVA - GRRRLS.mp3">
+				</a>
+				<!-- 
+				<a href="#" class="play"
+					data-id="7"
+					data-album=""
+					data-artist="Fiona Fung"
+					data-title="Proud Of You"
+					data-albumart="audio/covers/proud-of-you.jpg"
+					data-url="audio/Proud_Of_You.mp3">
+				</a>
+				
+				<a href="#" class="play"
+					data-id="8"
+					data-album=""
+					data-artist="Shane Filan"
+					data-title="Beautiful In White"
+					data-albumart="audio/covers/beautiful-in-white.jpg"
+					data-url="audio/Beautiful_In_White.mp3">
+				</a> -->
+
+				<!--------------V-POP--------------------->
+				<a href="#" class="play"
+					data-id="7"
+					data-album=""
+					data-artist="JACK"
+					data-title="ĐOM ĐÓM"
+					data-albumart="audio/covers/dom-dom.jpg"
+					data-url="audio/ĐOM ĐÓM - JACK.mp3">
+				</a>
+<!-- 
+				<a href="#" class="play"
+					data-id="10"
+					data-album=""
+					data-artist="TiaHaiChau-LeThienHieu"
+					data-title="Ai Đưa Em Về"
+					data-albumart="audio/covers/ai-dua-em-ve.jpg"
+					data-url="audio/ai_dua_em_ve.mp3">
+				</a>
+				
+
+				<a href="#" class="play"
+					data-id="11"
+					data-album=""
+					data-artist="Phan Mạnh Quỳnh"
+					data-title="Có Chàng Trai Viết Lên Cây"
+					data-albumart="audio/covers/co-chang-trai-viet-len-cay.jpg"
+					data-url="audio/Co_Chang_Trai_Viet_Len_Cay.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="12"
+					data-album=""
+					data-artist="Thùy Chi"
+					data-title="Giấc Mơ Trưa"
+					data-albumart="audio/covers/giac-mo-trua.jpg"
+					data-url="audio/Giac_Mo_Trua.mp3">
+				</a>
+
+				
+
+				<a href="#" class="play"
+					data-id="13"
+					data-album=""
+					data-artist="Mr Siro"
+					data-title="Tự Lau Nước Mắt"
+					data-albumart="audio/covers/tu-lau-nuoc-mat.jpg"
+					data-url="audio/Tu_Lau_Nuoc_Mat.mp3">
+				</a> -->
+
+				
+				<!----------------C-POP-------------------->
+				<a href="#" class="play"
+					data-id="8"
+					data-album=""
+					data-artist="爱殇"
+					data-title="Ái Thương"
+					data-albumart="audio/covers/ai-thuong.jpg"
+					data-url="audio/Ái Thương (爱殇).mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="9"
+					data-album=""
+					data-artist="A Nguyệt Nguyệt"
+					data-title="Cố Lí Phùng Xuân"
+					data-albumart="audio/covers/co-ly-phung-xuan.jpg"
+					data-url="audio/Cố Lí Phùng Xuân - A Nguyệt Nguyệt.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="10"
+					data-album=""
+					data-artist="Cát Đông Kỳ"
+					data-title="Hỉ"
+					data-albumart="audio/covers/hi.jpg"
+					data-url="audio/Hỉ - Cát Đông Kỳ.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="10"
+					data-album=""
+					data-artist="Lạc Thiên Y"
+					data-title="Hoắc Nguyên Giáp"
+					data-albumart="audio/covers/hoa-nguyn-giap.jpg"
+					data-url="audio/Hoắc Nguyên Giáp- Lạc Thiên Y.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="11"
+					data-album=""
+					data-artist="Ngải Thần"
+					data-title="Thời Không Sai Lệch"
+					data-albumart="audio/covers/thoi-0.jpg"
+					data-url="audio/Thời Không Sai Lệch - Ngải Thần.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="12"
+					data-album=""
+					data-artist="Tiêu Chiến"
+					data-title="Khúc Tận Trần Tình"
+					data-albumart="audio/covers/tran-tinh.jpg"
+					data-url="audio/Khúc Tận Trần Tình - Tiêu Chiến.mp3">
+				</a>
+				<a href="#" class="play"
+					data-id="13"
+					data-album=""
+					data-artist="Loan Tâm Dao"
+					data-title="Nguyện 願"
+					data-albumart="audio/covers/nguyen.jpg"
+					data-url="audio/Nguyện 願 - Loan Tâm Dao.mp3">
+				</a>
+				<a href="#" class="play"
+					data-id="14"
+					data-album=""
+					data-artist="Diệp Lý ft Dư Chiêu Nguyên"
+					data-title="Sơ Kiến"
+					data-albumart="audio/covers/so-kien.jpg"
+					data-url="audio/Sơ Kiến- Diệp Lý ft Dư Chiêu Nguyên.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="15"
+					data-album=""
+					data-artist="Lưu Vũ Ninh"
+					data-title="Thiên Vấn"
+					data-albumart="audio/covers/thien-van.jpg"
+					data-url="audio/Thiên Vấn • Lưu Vũ Ninh .mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="16"
+					data-album=""
+					data-artist="Hà Nhuận Đông"
+					data-title="Song Phi(OST LươngSơnBáChúcAnhĐài)"
+					data-albumart="audio/covers/song-phi.jpg"
+					data-url="audio/song_phi.mp3">
+				</a>
+				
+				
+				<!-------------------K-POP---------------------------->
+				<!-- <a href="#" class="play"
+					data-id="19"
+					data-album=""
+					data-artist="Lee Hi Bi"
+					data-title="No One"
+					data-albumart="audio/covers/no-one.jpg"
+					data-url="audio/no_one.mp3">
+				</a> -->
+<!-- 
+				<a href="#" class="play"
+					data-id="20"
+					data-album=""
+					data-artist="ChanYeol(EXO)-Punch"
+					data-title="Stay With Me"
+					data-albumart="audio/covers/stay-with-me.jpg"
+					data-url="audio/Stay_With_Me.mp3">
+				</a> -->
+<!-- 
+				<a href="#" class="play"
+					data-id="21"
+					data-album=""
+					data-artist="Shaun"
+					data-title="Way Back Home"
+					data-albumart="audio/covers/way-back-home.jpg"
+					data-url="audio/Way_Back_Home.mp3">
+				</a> -->
+
+				<a href="#" class="play"
+					data-id="17"
+					data-album=""
+					data-artist="Skull-HaHa-10cm"
+					data-title="Beautiful Girl"
+					data-albumart="audio/covers/beautiful-girl.jpg"
+					data-url="audio/Beautiful_Girl.mp3">
+				</a>
+				<!-- <a href="#" class="play"
+					data-id="23"
+					data-album=""
+					data-artist="SoYou(Sistar)-Junggigo"
+					data-title="Some"
+					data-albumart="audio/covers/some.jpg"
+					data-url="audio/some.mp3">
+				</a>
+
+				
+
+				<a href="#" class="play"
+					data-id="24"
+					data-album=""
+					data-artist="IU"
+					data-title="Bbibbi"
+					data-albumart="audio/covers/Bbibbi.jpg"
+					data-url="audio/Bbibbi.mp3">
+				</a>
+
+				<a href="#" class="play"
+					data-id="25"
+					data-album=""
+					data-artist="EXID"
+					data-title="I Love You"
+					data-albumart="audio/covers/iloveyou.jpg"
+					data-url="audio/iloveyou.mp3">
+				</a> -->
+			</div>
+			<div class="audio">
+				<audio id="player" class="music" data-id="1" autoplay><source src="audio/Becky G-Shower" type="audio/mpeg" /></audio>
+			</div>
+			<div class="current-info">
+				<div class="song-artist"></div>
+				<!--div class="song-album"></div-->
+				<div class="song-title"></div>
+			</div>
+			<div class="controls">
+				<a href="#" class="toggle-play-list"><i class="fa fa-list-ul"></i></a>
+				<div class="duration clearfix">
+					<span class="pull-left play-position"></span>
+					<span class="pull-right"><span class="play-current-time">00:00</span> / <span class="play-total-time">00:00</span></span>
+				</div>
+				<div class="progress"><div class="bar"></div></div>
+				<div class="action-button">
+					<a href="#" class="prev"><i class="fa fa-step-backward"></i></a>
+					<a href="#" class="play-pause"><i class="fa fa-pp"></i></a>
+					<a href="#" class="stop"><i class="fa fa-stop"></i></a>
+					<a href="#" class="next"><i class="fa fa-step-forward"></i></a>
+					<input type="range" class="volume" min="0" max="1" step="0.1" value="0.8" data-css="0.8">
+				</div>
+			</div>
+		</div>
+		<!--div class="audio">
+			<audio id="player" controls autoplay>
+				<source src="audio/That_Girl.mp3" type="audio/mpeg">
+			</audio>
+		</div-->
+		<div class="hani">
+			<a href="index.html" >Trang Chủ</a>
+		</div>
+		<div class="author">
+			<button onclick="downloadLink()">❤love❤</button>
+		</div>
+
+		
+	</div>
+	<script type="text/javascript">
+		/**
+		var audios = [
+			"audio/That_Girl.mp3",
+			"audio/Im_Yours.mp3",
+			"audio/My_Girl.mp3",
+			"audio/Girls_Like_You.mp3",
+			"audio/There_For_You.mp3",
+			"audio/What_Makes_You_Beautiful.mp3",
+			"audio/I_Do.mp3",
+			"audio/A_Little_Love.mp3",
+			"audio/Beautiful_In_White.mp3",
+			"audio/Proud_Of_You.mp3"
+		];
+		var music = document.getElementById("player");
+		var getSrc = document.getElementsByTagName("source");
+		getSrc[0].src = audios[Math.floor(Math.random() * 10)];
+		music.load();
+		var index = audios.indexOf(getSrc[0].getAttribute("src"));
+		music.addEventListener('ended', function() {
+			if(index == -1 || index >= 9) {
+				index = 0;
+			} else {
+				index = index + 1;
+			}
+			getSrc[0].src = audios[index];
+			music.load();
+			music.play();       
+		});
+		*/
+		var firstPreload = new Image();
+		firstPreload.src = "css/bg/2.jpg";
+	</script>
+	<!--//[ https://www.facebook.com/nhquyet ]//-->
+<!--
+	<div style="position: absolute;left: : 0;display: flex;top: 0;margin: 10px;height: 100%">
+		<iframe width="100%" style="margin: auto; max-height: 700px; box-shadow: 6px 6px 8px #999;" height="80%"; scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/897598517&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+	</div>
+-->
+</body>
+</html>
